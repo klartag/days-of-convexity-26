@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Days of Convexity and High-Dimensional Geometry — October 23 and 26, 2026 at Tel Aviv University.">
+  <meta name="description" content="A Day of Convexity and High-Dimensional Geometry — October 23 and 26, 2026 at Tel Aviv University.">
   <meta name="theme-color" content="#17233b">
-  <title>Days of Convexity &amp; High-Dimensional Geometry</title>
+  <title>A Day of Convexity &amp; High-Dimensional Geometry</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;display=swap" rel="stylesheet">
@@ -28,6 +28,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
       background: var(--paper);
     }
 
@@ -110,6 +111,8 @@
       color: var(--chalk);
       background: var(--ink);
       isolation: isolate;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
     .hero::before {
@@ -289,7 +292,13 @@
 
     .content-section {
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100svh;
       padding: clamp(6rem, 10vw, 10rem) 0;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
     .section-kicker { color: var(--coral-dark); }
@@ -501,7 +510,13 @@
     .seminar-link:hover svg { transform: translate(3px, -3px); }
 
     .note-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100svh;
       padding: clamp(5rem, 8vw, 8rem) 0;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
     .note-grid {
@@ -532,6 +547,7 @@
     .site-footer {
       padding: 2.2rem 0;
       border-top: 1px solid var(--line);
+      scroll-snap-align: start;
     }
 
     .footer-inner {
@@ -600,7 +616,7 @@
       .shell { width: min(100% - 2rem, 1240px); }
       .hero-inner { padding-top: 64px; padding-bottom: 320px; }
       h1 { font-size: clamp(3.5rem, 18vw, 5.8rem); }
-      h1 .subtitle { margin-left: 0.15em; padding-bottom: 0.2em; }
+      h1 .subtitle { margin-left: 0.15em; padding-bottom: 0.2em; font-size: clamp(1.6rem, 8vw, 2.8rem); }
       .geometry-stage { width: 82vw; right: -18vw; bottom: 145px; }
       .meta-grid { grid-template-columns: 1fr; }
       .meta-item { min-height: 0; padding: 1.1rem 1rem; border-right: 0; }
@@ -632,7 +648,7 @@
       <div class="hero-inner shell">
         <div class="hero-copy">
           <p class="eyebrow reveal">Tel Aviv University · October 2026</p>
-          <h1 class="reveal" id="event-title"><span class="title-anchor">Days of<span class="monogram" aria-hidden="true">
+          <h1 class="reveal" id="event-title"><span class="title-anchor">A Day of<span class="monogram" aria-hidden="true">
                 <svg viewBox="0 0 48 48">
                   <g class="logo-orbit" fill="none" stroke="#e5a394" stroke-width="0.8">
                     <ellipse cx="24" cy="24" rx="21" ry="9"/>
@@ -644,7 +660,7 @@
                   </g>
                   <circle cx="26" cy="27" r="2.2" fill="#e5a394"/>
                 </svg>
-              </span></span><br>Convexity <span class="subtitle">&amp; High-Dimensional Geometry</span></h1>
+              </span></span><br>Convexity <span class="subtitle">&amp; High&#8209;Dimensional Geometry</span></h1>
         </div>
 
         <div class="geometry-stage" aria-hidden="true">
@@ -780,7 +796,7 @@
 
   <footer class="site-footer">
     <div class="footer-inner shell">
-      <span>Days of Convexity &amp; High-Dimensional Geometry</span>
+      <span>A Day of Convexity &amp; High&#8209;Dimensional Geometry</span>
       <span>Tel Aviv · 2026</span>
     </div>
   </footer>
