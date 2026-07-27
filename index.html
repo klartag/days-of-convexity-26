@@ -73,28 +73,20 @@
       margin-inline: auto;
     }
 
-    .site-header {
-      position: absolute;
-      inset: 0 0 auto;
-      z-index: 10;
-      color: var(--chalk);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 90px;
-      border-bottom: 1px solid var(--line-light);
+    .title-anchor {
+      position: relative;
+      display: inline-block;
     }
 
     .monogram {
-      display: inline-grid;
-      place-items: center;
-      width: 46px;
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      width: clamp(44px, 4.5vw, 76px);
       aspect-ratio: 1;
+      margin-left: clamp(1.6rem, 4vw, 3.2rem);
       color: var(--chalk);
-      text-decoration: none;
+      transform: translateY(-50%);
     }
 
     .monogram svg {
@@ -110,44 +102,10 @@
     .logo-orbit { animation: spin 13s linear infinite; }
     .logo-core { animation: counter-spin 9s linear infinite; }
 
-    .nav-links {
-      display: flex;
-      gap: clamp(1.25rem, 3vw, 3rem);
-      align-items: center;
-      font-size: 0.76rem;
-      font-weight: 600;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-    }
-
-    .nav-links a {
-      position: relative;
-      text-decoration: none;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: -0.45rem;
-      left: 0;
-      height: 1px;
-      background: var(--coral);
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 220ms ease;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a:focus-visible::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
     .hero {
       position: relative;
       display: grid;
-      min-height: max(920px, 100svh);
+      min-height: max(760px, 84svh);
       overflow: hidden;
       color: var(--chalk);
       background: var(--ink);
@@ -184,14 +142,14 @@
       grid-template-columns: minmax(0, 1.12fr) minmax(340px, 0.88fr);
       gap: 4rem;
       align-items: center;
-      padding-top: 130px;
-      padding-bottom: 190px;
+      padding-top: 48px;
+      padding-bottom: 150px;
     }
 
     .hero-copy {
       position: relative;
       z-index: 2;
-      padding-top: 2.5rem;
+      padding-top: 1rem;
     }
 
     .eyebrow,
@@ -226,7 +184,7 @@
       line-height: 0.82;
     }
 
-    h1 span {
+    h1 .subtitle {
       display: block;
       margin: 0.13em 0 0 0.58em;
       padding-bottom: 0.12em;
@@ -299,7 +257,7 @@
 
     .meta-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1.4fr;
+      grid-template-columns: 1fr 1.2fr;
     }
 
     .meta-item {
@@ -321,10 +279,13 @@
     }
 
     .meta-value {
+      display: block;
       font-family: var(--serif);
       font-size: clamp(1.2rem, 2vw, 1.55rem);
-      line-height: 1.2;
+      line-height: 1.3;
     }
+
+    .meta-value + .meta-value { margin-top: 0.15em; }
 
     .content-section {
       position: relative;
@@ -337,7 +298,7 @@
       max-width: 780px;
       margin: 0;
       font-family: var(--serif);
-      font-size: clamp(3rem, 6vw, 6.2rem);
+      font-size: clamp(2.2rem, 4vw, 4rem);
       font-weight: 400;
       letter-spacing: -0.045em;
       line-height: 0.95;
@@ -346,7 +307,7 @@
     .speakers-layout {
       display: grid;
       grid-template-columns: 1fr;
-      margin-top: 5rem;
+      margin-top: 1.5rem;
     }
 
     .speaker-motif {
@@ -400,10 +361,10 @@
     .speaker {
       position: relative;
       display: grid;
-      grid-template-columns: 3rem 1fr auto;
+      grid-template-columns: 3rem 1fr;
       gap: 1rem;
       align-items: center;
-      min-height: 124px;
+      min-height: 92px;
       border-bottom: 1px solid var(--line);
       overflow: hidden;
     }
@@ -433,19 +394,23 @@
     }
 
     .speaker-name {
-      display: block;
       font-family: var(--serif);
       font-size: clamp(1.5rem, 2.8vw, 2.6rem);
       letter-spacing: -0.035em;
-      line-height: 1;
+      line-height: 1.2;
+    }
+
+    .speaker-name a {
+      color: inherit;
+      text-decoration: none;
     }
 
     .speaker-affiliation {
-      max-width: 230px;
+      margin-left: 0.6rem;
       color: var(--ink-soft);
+      font-family: var(--sans);
       font-size: 0.76rem;
-      line-height: 1.45;
-      text-align: right;
+      letter-spacing: normal;
       transition: color 300ms ease;
     }
 
@@ -466,50 +431,10 @@
       transform: rotate(45deg);
     }
 
-    .details .section-kicker { color: #e5a394; }
-
-    .details-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.75fr);
-      gap: clamp(4rem, 10vw, 10rem);
-      align-items: end;
-    }
-
-    .detail-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      margin-top: 4.5rem;
-      border-top: 1px solid var(--line-light);
-    }
-
-    .detail-card {
-      padding: 2rem 2rem 2rem 0;
-      border-bottom: 1px solid var(--line-light);
-    }
-
-    .detail-card:nth-child(odd) { border-right: 1px solid var(--line-light); }
-    .detail-card:nth-child(even) { padding-left: 2rem; }
-
-    .detail-card small {
-      display: block;
-      margin-bottom: 0.8rem;
-      color: #e5a394;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .detail-card strong {
-      display: block;
-      font-family: var(--serif);
-      font-size: clamp(1.4rem, 2.5vw, 2.1rem);
-      font-weight: 400;
-      line-height: 1.15;
-    }
-
     .organizers-block {
       position: relative;
+      max-width: 480px;
+      margin-inline: auto;
       padding: 2.8rem;
       border: 1px solid var(--line-light);
       background: rgba(255, 253, 248, 0.035);
@@ -552,19 +477,24 @@
       line-height: 1.5;
     }
 
-    .seminar-link {
-      display: inline-flex;
-      gap: 0.75rem;
-      align-items: center;
+    .seminar-note {
       margin-top: 2.8rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 1px solid #e5a394;
-      color: #e5a394;
-      text-decoration: none;
+      color: rgba(255, 253, 248, 0.58);
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.09em;
       text-transform: uppercase;
+    }
+
+    .seminar-link {
+      display: inline-flex;
+      gap: 0.4rem;
+      align-items: center;
+      margin-left: 0.4rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #e5a394;
+      color: #e5a394;
+      text-decoration: none;
     }
 
     .seminar-link svg { transition: transform 180ms ease; }
@@ -664,33 +594,21 @@
       .orbit-node { display: none; }
       .speakers-layout { grid-template-columns: 1fr; }
       .speaker-motif { position: static; width: 220px; }
-      .details-grid { grid-template-columns: 1fr; }
-      .organizers-block { max-width: 620px; }
     }
 
     @media (max-width: 640px) {
       .shell { width: min(100% - 2rem, 1240px); }
-      .nav { min-height: 74px; }
-      .nav-links a:not(:last-child) { display: none; }
-      .hero-inner { padding-top: 118px; padding-bottom: 320px; }
+      .hero-inner { padding-top: 64px; padding-bottom: 320px; }
       h1 { font-size: clamp(3.5rem, 18vw, 5.8rem); }
-      h1 span { margin-left: 0.15em; padding-bottom: 0.2em; }
+      h1 .subtitle { margin-left: 0.15em; padding-bottom: 0.2em; }
       .geometry-stage { width: 82vw; right: -18vw; bottom: 145px; }
-      .meta-grid { grid-template-columns: 1fr 1fr; }
-      .meta-item { min-height: 96px; padding: 1.1rem 1rem; }
-      .meta-item:nth-child(2) { border-right: 0; }
-      .meta-item:last-child {
-        grid-column: 1 / -1;
-        border-top: 1px solid var(--line-light);
-      }
-      .section-heading { font-size: clamp(2.7rem, 14vw, 4.4rem); }
-      .speakers-layout { margin-top: 3.5rem; }
+      .meta-grid { grid-template-columns: 1fr; }
+      .meta-item { min-height: 0; padding: 1.1rem 1rem; border-right: 0; }
+      .meta-item + .meta-item { border-top: 1px solid var(--line-light); }
+      .section-heading { font-size: clamp(1.8rem, 10vw, 3rem); }
+      .speakers-layout { margin-top: 1.2rem; }
       .speaker { grid-template-columns: 2rem 1fr; padding: 1.2rem 0; }
-      .speaker-affiliation { grid-column: 2; max-width: none; text-align: left; }
-      .detail-cards { grid-template-columns: 1fr; }
-      .detail-card:nth-child(odd) { border-right: 0; }
-      .detail-card:nth-child(even) { padding-left: 0; }
-      .organizers-block { padding: 2rem; }
+      .organizers-block { padding: 2rem; max-width: none; }
       .note-grid { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; gap: 0.8rem; }
     }
@@ -709,35 +627,24 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <nav class="nav shell" aria-label="Main navigation">
-      <a class="monogram" href="#top" aria-label="Return to top">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <g class="logo-orbit" fill="none" stroke="#e5a394" stroke-width="0.8">
-            <ellipse cx="24" cy="24" rx="21" ry="9"/>
-            <ellipse cx="24" cy="24" rx="21" ry="9" transform="rotate(60 24 24)"/>
-          </g>
-          <g class="logo-core" fill="none" stroke="#fffdf8" stroke-width="1.1">
-            <path d="M24 7 39 18 34 37 14 39 8 20Z"/>
-            <path d="m24 7 2 20 13-9M26 27l8 10M26 27 14 39M26 27 8 20Z"/>
-          </g>
-          <circle cx="26" cy="27" r="2.2" fill="#e5a394"/>
-        </svg>
-      </a>
-      <div class="nav-links">
-        <a href="#speakers">Speakers</a>
-        <a href="#details">Details</a>
-        <a href="https://sites.google.com/view/gafaseminar/home" target="_blank" rel="noreferrer">GAFA Seminar ↗</a>
-      </div>
-    </nav>
-  </header>
-
   <main id="main">
     <section class="hero" id="top" aria-labelledby="event-title">
       <div class="hero-inner shell">
         <div class="hero-copy">
           <p class="eyebrow reveal">Tel Aviv University · October 2026</p>
-          <h1 class="reveal" id="event-title">Days of<br>Convexity <span>&amp; High-Dimensional Geometry</span></h1>
+          <h1 class="reveal" id="event-title"><span class="title-anchor">Days of<span class="monogram" aria-hidden="true">
+                <svg viewBox="0 0 48 48">
+                  <g class="logo-orbit" fill="none" stroke="#e5a394" stroke-width="0.8">
+                    <ellipse cx="24" cy="24" rx="21" ry="9"/>
+                    <ellipse cx="24" cy="24" rx="21" ry="9" transform="rotate(60 24 24)"/>
+                  </g>
+                  <g class="logo-core" fill="none" stroke="#fffdf8" stroke-width="1.1">
+                    <path d="M24 7 39 18 34 37 14 39 8 20Z"/>
+                    <path d="m24 7 2 20 13-9M26 27l8 10M26 27 14 39M26 27 8 20Z"/>
+                  </g>
+                  <circle cx="26" cy="27" r="2.2" fill="#e5a394"/>
+                </svg>
+              </span></span><br>Convexity <span class="subtitle">&amp; High-Dimensional Geometry</span></h1>
         </div>
 
         <div class="geometry-stage" aria-hidden="true">
@@ -777,14 +684,12 @@
         <div class="meta-grid shell">
           <div class="meta-item">
             <span class="meta-label">Dates</span>
-            <span class="meta-value">October 23 &amp; 26, 2026</span>
+            <span class="meta-value">Friday, 23 October 2026</span>
+            <span class="meta-value">Monday, 26 October 2026</span>
           </div>
           <div class="meta-item">
-            <span class="meta-label">Institution</span>
+            <span class="meta-label">Location</span>
             <span class="meta-value">Tel Aviv University</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Venue</span>
             <span class="meta-value">Schreiber Building · Room 309</span>
           </div>
         </div>
@@ -793,7 +698,6 @@
 
     <section class="content-section" id="speakers" aria-labelledby="speakers-title">
       <div class="shell">
-        <p class="section-kicker reveal">Participants</p>
         <h2 class="section-heading reveal" id="speakers-title">Invited speakers</h2>
 
         <div class="speakers-layout">
@@ -822,54 +726,27 @@
           <ol class="speaker-list">
             <li class="speaker reveal">
               <span class="speaker-mark" aria-hidden="true"></span>
-              <span class="speaker-name">Rotem Assouline</span>
-              <span class="speaker-affiliation">Institut de Mathématiques de Jussieu &amp; MIT</span>
+              <span class="speaker-name"><a href="https://rotemassouline.github.io/" target="_blank" rel="noreferrer">Rotem Assouline</a><span class="speaker-affiliation">(Institut de Mathématiques de Jussieu &amp; MIT)</span></span>
             </li>
             <li class="speaker reveal">
               <span class="speaker-mark" aria-hidden="true"></span>
-              <span class="speaker-name">Dmitry Faifman</span>
-              <span class="speaker-affiliation">Université de Montréal</span>
+              <span class="speaker-name"><a href="https://sites.google.com/site/faifmand/" target="_blank" rel="noreferrer">Dmitry Faifman</a><span class="speaker-affiliation">(Université de Montréal)</span></span>
             </li>
             <li class="speaker reveal">
               <span class="speaker-mark" aria-hidden="true"></span>
-              <span class="speaker-name">Or Hershkovits</span>
-              <span class="speaker-affiliation">University of Maryland</span>
+              <span class="speaker-name"><a href="https://sites.google.com/site/orhermath/" target="_blank" rel="noreferrer">Or Hershkovits</a><span class="speaker-affiliation">(University of Maryland)</span></span>
             </li>
             <li class="speaker reveal">
               <span class="speaker-mark" aria-hidden="true"></span>
-              <span class="speaker-name">Shay Sadovsky</span>
-              <span class="speaker-affiliation">New York University</span>
+              <span class="speaker-name"><a href="https://sites.google.com/view/shaysadovsky/home" target="_blank" rel="noreferrer">Shay Sadovsky</a><span class="speaker-affiliation">(New York University)</span></span>
             </li>
           </ol>
         </div>
       </div>
     </section>
 
-    <section class="content-section details" id="details" aria-labelledby="details-title">
-      <div class="shell details-grid">
-        <div>
-          <p class="section-kicker reveal">Dates &amp; venue</p>
-          <h2 class="section-heading reveal" id="details-title">Event details</h2>
-          <div class="detail-cards reveal">
-            <div class="detail-card">
-              <small>Friday</small>
-              <strong>23 October 2026</strong>
-            </div>
-            <div class="detail-card">
-              <small>Monday</small>
-              <strong>26 October 2026</strong>
-            </div>
-            <div class="detail-card">
-              <small>Campus</small>
-              <strong>Tel Aviv University</strong>
-            </div>
-            <div class="detail-card">
-              <small>Room</small>
-              <strong>Schreiber 309</strong>
-            </div>
-          </div>
-        </div>
-
+    <section class="content-section details" id="details" aria-labelledby="organizers-title">
+      <div class="shell">
         <aside class="organizers-block reveal" aria-labelledby="organizers-title">
           <p class="block-label" id="organizers-title">Organized by</p>
           <div class="organizer">
@@ -880,12 +757,15 @@
             <span class="organizer-name">Boaz Klartag</span>
             <span class="organizer-affiliation">Weizmann Institute of Science &amp; Tel Aviv University</span>
           </div>
-          <a class="seminar-link" href="https://sites.google.com/view/gafaseminar/home" target="_blank" rel="noreferrer">
-            In conjunction with the Israeli GAFA Seminar
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M3 11 11 3M5 3h6v6" stroke="currentColor"/>
-            </svg>
-          </a>
+          <p class="seminar-note">
+            In conjunction with the
+            <a class="seminar-link" href="https://sites.google.com/view/gafaseminar/home" target="_blank" rel="noreferrer">
+              Israeli GAFA Seminar
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M3 11 11 3M5 3h6v6" stroke="currentColor"/>
+              </svg>
+            </a>
+          </p>
         </aside>
       </div>
     </section>
