@@ -28,7 +28,6 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-snap-type: y mandatory;
       background: var(--paper);
     }
 
@@ -615,6 +614,7 @@
     }
 
     @media (max-width: 640px) {
+      html { scroll-snap-type: y mandatory; }
       .shell { width: min(100% - 2rem, 1240px); }
       .hero-inner { padding-top: 64px; padding-bottom: 320px; }
       h1 { font-size: clamp(2.4rem, 11.5vw, 4.6rem); }
