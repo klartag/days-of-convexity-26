@@ -320,47 +320,6 @@
       margin-top: 1.5rem;
     }
 
-    .speaker-motif {
-      position: sticky;
-      top: 2rem;
-      align-self: start;
-      display: grid;
-      place-items: center;
-      width: min(100%, 290px);
-      aspect-ratio: 1;
-      border: 1px solid var(--line);
-      overflow: hidden;
-      background: rgba(255, 253, 248, 0.34);
-    }
-
-    .speaker-motif::before,
-    .speaker-motif::after {
-      content: "";
-      position: absolute;
-      width: 68%;
-      aspect-ratio: 1;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      transform: rotate(18deg);
-    }
-
-    .speaker-motif::after {
-      width: 38%;
-      border-color: rgba(200, 91, 67, 0.4);
-      border-radius: 0;
-      transform: rotate(45deg);
-    }
-
-    .speaker-motif svg {
-      position: relative;
-      z-index: 1;
-      width: 78%;
-      overflow: visible;
-      filter: drop-shadow(0 18px 18px rgba(23, 35, 59, 0.12));
-    }
-
-    }
-
     .speaker-list {
       margin: 0;
       padding: 0;
@@ -422,6 +381,59 @@
       font-size: 0.76rem;
       letter-spacing: normal;
       transition: color 300ms ease;
+    }
+
+    /* --- SCHEDULE SECTION STYLES --- */
+    .schedule-list {
+      margin: 3rem 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--ink);
+    }
+
+    .schedule-item {
+      display: grid;
+      grid-template-columns: 9rem 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+      transition: background 300ms ease;
+    }
+
+    .schedule-item:hover {
+      background: rgba(255, 253, 248, 0.6);
+    }
+
+    .schedule-time {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--coral-dark);
+      letter-spacing: 0.05em;
+    }
+
+    .schedule-event {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    
+    .schedule-event .speaker-affiliation {
+      color: var(--ink-soft);
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+      display: inline-block;
+    }
+
+    .schedule-break {
+      color: var(--ink-soft);
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.5;
     }
 
     .details {
@@ -592,11 +604,6 @@
       50% { opacity: 1; transform: rotate(135deg) scale(1.15); }
     }
 
-    @keyframes motif-float {
-      0%, 100% { transform: translateY(0) rotate(-2deg); }
-      50% { transform: translateY(-7px) rotate(2deg); }
-    }
-
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; align-items: start; padding-bottom: 250px; }
       .hero-copy { padding-top: 2rem; }
@@ -610,7 +617,6 @@
       }
       .orbit-node { display: none; }
       .speakers-layout { grid-template-columns: 1fr; }
-      .speaker-motif { position: static; width: 220px; }
     }
 
     @media (max-width: 640px) {
@@ -626,6 +632,10 @@
       .section-heading { font-size: clamp(1.8rem, 10vw, 3rem); }
       .speakers-layout { margin-top: 1.2rem; }
       .speaker { grid-template-columns: 2rem 1fr; padding: 1.2rem 0; }
+      
+      .schedule-item { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.2rem 0.5rem; }
+      .schedule-event .speaker-affiliation { display: block; margin-left: 0; margin-top: 0.3rem; }
+
       .organizers-block { padding: 2rem; max-width: none; }
       .note-grid { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; gap: 0.8rem; }
@@ -718,28 +728,6 @@
         <h2 class="section-heading reveal" id="speakers-title">Invited speakers</h2>
 
         <div class="speakers-layout">
-          <!-- <div class="speaker-motif reveal" aria-hidden="true">
-            <svg viewBox="0 0 260 260">
-              <g class="motif-orbit" fill="none" stroke="#17233b" stroke-opacity=".28">
-                <ellipse cx="130" cy="130" rx="108" ry="39" transform="rotate(-18 130 130)"/>
-                <ellipse cx="130" cy="130" rx="108" ry="39" transform="rotate(53 130 130)"/>
-              </g>
-              <g class="motif-body" stroke="#17233b" stroke-width="1.25">
-                <path d="M130 28 218 92 194 207 76 220 32 105Z" fill="#17233b" fill-opacity=".06"/>
-                <path d="m130 28 18 111 70-47Z" fill="#c85b43" fill-opacity=".34"/>
-                <path d="m148 139 46 68 24-115Z" fill="#17233b" fill-opacity=".12"/>
-                <path d="m148 139-72 81 118-13Z" fill="#c85b43" fill-opacity=".14"/>
-                <path d="M32 105 148 139 76 220Z" fill="#17233b" fill-opacity=".08"/>
-                <path d="M130 28 32 105l116 34Z" fill="#c85b43" fill-opacity=".2"/>
-                <path d="M130 28 194 207 32 105l186-13L76 220" fill="none"/>
-              </g>
-              <g class="motif-points" fill="#c85b43">
-                <circle cx="130" cy="28" r="4"/><circle cx="218" cy="92" r="4"/>
-                <circle cx="194" cy="207" r="4"/><circle cx="76" cy="220" r="4"/>
-                <circle cx="32" cy="105" r="4"/><circle cx="148" cy="139" r="5"/>
-              </g>
-            </svg>
-          </div> -->
           <ol class="speaker-list">
             <li class="speaker reveal">
               <span class="speaker-mark" aria-hidden="true"></span>
@@ -755,15 +743,11 @@
               <span class="speaker-mark" aria-hidden="true"></span>
               <span class="speaker-name"><a href="https://webusers.imj-prg.fr/~omer.friedland/" target="_blank" rel="noreferrer">Omer Friedland</a><span class="speaker-affiliation">(Institut de Mathématiques de Jussieu, Paris)</span></span>
             </li>
-
-
             
             <li class="speaker reveal">
               <span class="speaker-mark" aria-hidden="true"></span>
               <span class="speaker-name"><a href="https://sites.google.com/site/orhermath/" target="_blank" rel="noreferrer">Or Hershkovits</a><span class="speaker-affiliation">(University of Maryland)</span></span>
             </li>
-
-
             
             <li class="speaker reveal">
               <span class="speaker-mark" aria-hidden="true"></span>
@@ -771,6 +755,47 @@
             </li>
           </ol>
         </div>
+      </div>
+    </section>
+
+    <!-- SCHEDULE SECTION -->
+    <section class="content-section" id="schedule" aria-labelledby="schedule-title">
+      <div class="shell">
+        <h2 class="section-heading reveal" id="schedule-title">Schedule</h2>
+        <ul class="schedule-list">
+          <li class="schedule-item reveal">
+            <span class="schedule-time">09:00 &ndash; 09:45</span>
+            <span class="schedule-event">Dmitry Faifman <span class="speaker-affiliation">(Université de Montréal)</span></span>
+          </li>
+          <li class="schedule-item reveal">
+            <span class="schedule-time">09:50 &ndash; 10:35</span>
+            <span class="schedule-event">Or Hershkovits <span class="speaker-affiliation">(University of Maryland)</span></span>
+          </li>
+          <li class="schedule-item reveal">
+            <span class="schedule-time">10:35 &ndash; 11:15</span>
+            <span class="schedule-break">Coffee break with some savory snacks</span>
+          </li>
+          <li class="schedule-item reveal">
+            <span class="schedule-time">11:15 &ndash; 12:00</span>
+            <span class="schedule-event">Shay Sadovsky <span class="speaker-affiliation">(New York University)</span></span>
+          </li>
+          <li class="schedule-item reveal">
+            <span class="schedule-time">12:00 &ndash; 13:15</span>
+            <span class="schedule-break">BREAK &ndash; discussion time, and people who need substantial food can hunt or gather</span>
+          </li>
+          <li class="schedule-item reveal">
+            <span class="schedule-time">13:15 &ndash; 14:00</span>
+            <span class="schedule-event">Omer Friedland <span class="speaker-affiliation">(Institut de Mathématiques de Jussieu, Paris)</span></span>
+          </li>
+          <li class="schedule-item reveal">
+            <span class="schedule-time">14:00 &ndash; 14:30</span>
+            <span class="schedule-break">Coffee and sweeter snacks</span>
+          </li>
+          <li class="schedule-item reveal">
+            <span class="schedule-time">14:30 &ndash; 15:15</span>
+            <span class="schedule-event">Rotem Assouline <span class="speaker-affiliation">(MIT - Massachusetts Institute of Technology)</span></span>
+          </li>
+        </ul>
       </div>
     </section>
 
